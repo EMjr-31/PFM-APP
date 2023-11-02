@@ -8,7 +8,7 @@ const Rrhh =()=>{
     return(
         <View>
             <Text>RRHH</Text>
-            <Btn onPress={()=>navegar.navigate("Secundario")} texto='Secundario' color='#0052cc'/>
+            <Btn onPress={()=>navegar.navigate("Secundario", {EjemploProps:"Soy una props desde RRHH"})} texto='Secundario' color='#0052cc'/>
         </View>
     )
 }
