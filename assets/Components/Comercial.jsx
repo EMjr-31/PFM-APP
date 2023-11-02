@@ -1,25 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView} from "react-native";
+import {Card} from "./Card";
+import { CardGrande } from "./CardGrande";
+
 
 const Comercial = () => {
   return (
     <View style={styles.container}>
       <View style={styles.cardContainer}>
-        <TouchableOpacity style={styles.card}>
-          <Text style={styles.cardText}>Propuestas</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.card}>
-          <Text style={styles.cardText}>Clientes</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.card}>
-          <Text style={styles.cardText}>Contactos</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.card}>
-          <Text style={styles.cardText}>Empleados</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.card}>
-          <Text style={styles.cardText}>Reportes</Text>
-        </TouchableOpacity>
+        <CardGrande onPress={()=>{alert('Propuestas')}} titulo='Propuestas' color='2' colorTexto='11' icono='clipboard-flow-outline' numero='12'/>
+        <Card onPress={()=>{alert('Clientes')}} titulo='Clientes' color='3' colorTexto='11' icono='office-building' numero='20'/>
+        <Card onPress={()=>{alert('Contactos')}} titulo='Contactos' color='5' colorTexto='11' icono='card-account-details-outline' numero='30'/>
+        <Card onPress={()=>{alert('Reportes')}} titulo='Reportes' color='11' colorTexto='3' icono='chart-waterfall'/>
       </View>
     </View>
   );
@@ -29,25 +21,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center", // Centrar verticalmente
+    backgroundColor:'#f3f6fc',
   },
   cardContainer: {
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap", // Permite que las tarjetas se envuelvan en filas
     justifyContent: "space-between", // Espaciado uniforme horizontalmente
-  },
-  card: {
-    flexBasis: "48%", // Establece el ancho del 48% del contenedor padre (menos espacio para evitar desbordamiento)
-    height: 200,
-    backgroundColor: "#f0f0f0",
-    borderRadius: 8,
-    padding: 16,
-    marginVertical: 8, // Espaciado vertical entre las tarjetas
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  cardText: {
-    fontSize: 16,
   },
 });
 
