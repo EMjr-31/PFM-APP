@@ -10,7 +10,7 @@ const Rrhh =()=>{
         <View style={styles.container}>
         <View style={styles.cardContainer}>
           <Card onPress={()=>{alert('Candidatos')}} titulo='Candidatos' color='5' colorTexto='11' icono='account-box-multiple-outline' numero='20'/>
-          <Card onPress={()=>{alert('Reportes')}} titulo='Reportes' color='8' colorTexto='3' icono='chart-waterfall'/>
+          <Card onPress={()=>{alert('Reportes')}} titulo='Reportes' color='8' colorTexto='3' icono='chart-box-outline'/>
           <CardGrande 
             onPress={()=>navegar.navigate("Secundario", {EjemploProps:"Seguimientos"})} 
             titulo='Seguimientos' color='4' colorTexto='11' icono='badge-account-alert-outline' numero='12'
