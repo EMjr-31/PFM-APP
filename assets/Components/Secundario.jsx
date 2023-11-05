@@ -1,55 +1,39 @@
-import React from "react";
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 
-const data = [
-    { id: "1", campo1: "Valor 1", campo2: "Valor A" },
-    { id: "2", campo1: "Valor 2", campo2: "Valor B" },
-    { id: "3", campo1: "Valor 3", campo2: "Valor C" },
-    { id: "4", campo1: "Valor 4", campo2: "Valor D" },
-    { id: "5", campo1: "Valor 5", campo2: "Valor E" },
-    { id: "6", campo1: "Valor 6", campo2: "Valor F" },
-    { id: "7", campo1: "Valor 7", campo2: "Valor G" },
-    { id: "8", campo1: "Valor 8", campo2: "Valor H" },
-    { id: "9", campo1: "Valor 9", campo2: "Valor I" },
-    { id: "10", campo1: "Valor 10", campo2: "Valor J" },
-    { id: "11", campo1: "Valor 11", campo2: "Valor K" },
-    { id: "12", campo1: "Valor 12", campo2: "Valor L" },
-    { id: "13", campo1: "Valor 13", campo2: "Valor M" },
-    { id: "14", campo1: "Valor 14", campo2: "Valor N" },
-    { id: "15", campo1: "Valor 15", campo2: "Valor O" },
-    { id: "16", campo1: "Valor 16", campo2: "Valor P" },
-    { id: "17", campo1: "Valor 17", campo2: "Valor Q" },
-    { id: "18", campo1: "Valor 18", campo2: "Valor R" },
-    { id: "19", campo1: "Valor 19", campo2: "Valor S" },
-    { id: "20", campo1: "Valor 20", campo2: "Valor T" },
-    { id: "21", campo1: "Valor 21", campo2: "Valor U" },
-    { id: "22", campo1: "Valor 22", campo2: "Valor V" },
-    { id: "23", campo1: "Valor 23", campo2: "Valor W" },
-    { id: "24", campo1: "Valor 24", campo2: "Valor X" },
-    { id: "25", campo1: "Valor 25", campo2: "Valor Y" },
-    { id: "26", campo1: "Valor 26", campo2: "Valor Z" },
-  ];
-  
-
-const EncabezadoTabla = () => (
-  <View style={styles.row}>
-    <Text style={styles.cellHeader}>Campo 1</Text>
-    <Text style={styles.cellHeader}>Campo 2</Text>
-  </View>
-);
+const apiUrl = "http://147.182.249.91/api/plazas-trabajo";
 
 const ListaTabla = ({ navigation }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Realiza una solicitud HTTP a la API para obtener los datos
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => console.error("Error al obtener datos:", error));
+  }, []);
+
+  const EncabezadoTabla = () => (
+    <View style={styles.row}>
+      <Text style={styles.cellHeader}>ID</Text>
+      <Text style={styles.cellHeader}>Nombre de la Plaza</Text>
+      <Text style={styles.cellHeader}>Estado</Text>
+    </View>
+  );
+
   const renderItem = ({ item }) => (
     <TouchableOpacity
       onPress={() => {
         // Aquí puedes agregar la lógica para manejar el toque en una fila, por ejemplo, navegación a una pantalla de detalles
-        //navigation.navigate("Detalle", { item });
-        alert(item.campo2)
+        // navigation.navigate("Detalle", { item });
+        alert(item.nombre_plaza)
       }}
     >
       <View style={styles.row}>
-        <Text style={styles.cell}>{item.campo1}</Text>
-        <Text style={styles.cell}>{item.campo2}</Text>
+        <Text style={styles.cell}>{item.id}</Text>
+        <Text style={styles.cell}>{item.nombre_plaza}</Text>
+        <Text style={styles.cell}>{item.estatus}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -61,13 +45,13 @@ const ListaTabla = ({ navigation }) => {
           <EncabezadoTabla />
           <FlatList
             data={data}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id.toString()}
             renderItem={renderItem}
           />
         </View>
       </View>
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
@@ -76,15 +60,15 @@ const styles = StyleSheet.create({
   },
   centered: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   tabla: {
-    width: '90%', // Utiliza el 90% del ancho disponible
-    backgroundColor:'#fff',
-    marginTop:40,
-    padding:2,
-    borderRadius:10
+    width: "90%",
+    backgroundColor: "#fff",
+    marginTop: 40,
+    padding: 2,
+    borderRadius: 10,
   },
   row: {
     flexDirection: "row",
@@ -95,10 +79,10 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: "center",
     fontWeight: "bold",
-    paddingBottom:10,
+    paddingBottom: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
-    fontSize:16
+    fontSize: 16,
   },
   cell: {
     flex: 1,
