@@ -5,18 +5,22 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
-// Pantallas
+// Pantallas de inicio 
 import Inicio from "./Inicio";
 import Rrhh from "./Rrhh";
 import Comercial from "./Comercial";
 import Candidatos from "./Candidatos";
+
+//Pantall Secundarias
 import Secundario from "./Secundario";
+import FormularioClientes from "./FormularioClientes";
 
 // Variable de TabNavigator
 const Tab = createBottomTabNavigator();
 
 ///
 const RrhhStack= createNativeStackNavigator();
+const ComercialStack= createNativeStackNavigator();
 
 function RrhhStackPantallas(){
     return(
@@ -33,6 +37,23 @@ function RrhhStackPantallas(){
             />
         </RrhhStack.Navigator>
     )
+}
+
+function ComercialStackPantallas(){
+  return(
+      <ComercialStack.Navigator
+          initialRouteName="Administrador Comercial"
+      >
+          <ComercialStack.Screen
+              name="Administrador Comercial"
+              component={Comercial}
+          />
+           <ComercialStack.Screen
+              name="Clientes"
+              component={FormularioClientes}
+          />
+      </ComercialStack.Navigator>
+  )
 }
 
 // Función con las tabs
@@ -68,12 +89,13 @@ function Mistabs() {
       ></Tab.Screen>
       <Tab.Screen
         name="Comercial"
-        component={Comercial}
+        component={ComercialStackPantallas}
         options={{
           tabBarLabel: "Comercial",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="storefront-outline" size={size} color={color} />
           ),
+          headerShown: false
         }}
       ></Tab.Screen>
       <Tab.Screen
