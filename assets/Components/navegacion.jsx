@@ -10,11 +10,12 @@ import Inicio from "./Inicio";
 import Rrhh from "./Rrhh";
 import Comercial from "./Comercial";
 import Candidatos from "./Candidatos";
-import Clientes from "./Clientes";
 
 //Pantall Secundarias
 import Secundario from "./Secundario";
 import FormularioClientes from "./FormularioClientes";
+import Clientes from "./Clientes";
+import EditarCliente from "./EditarCliente";
 
 // Variable de TabNavigator
 const Tab = createBottomTabNavigator();
@@ -44,6 +45,12 @@ function ComercialStackPantallas(){
   return(
       <ComercialStack.Navigator
           initialRouteName="Administrador Comercial"
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: "#0052cc", // Color de fondo de la barra de navegación
+            },
+            headerTintColor: "#fff", // Color del texto de la barra de navegación
+          }}
       >
           <ComercialStack.Screen
               name="Administrador Comercial"
@@ -57,6 +64,10 @@ function ComercialStackPantallas(){
               name="Ingresar Clientes"
               component={FormularioClientes}
           />
+          <ComercialStack.Screen
+              name="Editar Cliente"
+              component={EditarCliente}
+          />
       </ComercialStack.Navigator>
   )
 }
@@ -67,7 +78,8 @@ function Mistabs() {
     <Tab.Navigator
       initialRouteName="Inicio"
       screenOptions={{
-        tabBarActiveTintColor: '#0052cc'
+        tabBarActiveTintColor: '#0052cc',
+
       }}
     >
       <Tab.Screen
