@@ -4,6 +4,8 @@ import LoginPantalla from './assets/Components/LoginPantalla';
 import RegistroPantalla from './assets/Components/RegistroPantalla';
 import Navegacion from './assets/Components/navegacion';
 export default function App() {
+
+  
   return (
     <Navegacion/>
   );

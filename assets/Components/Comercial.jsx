@@ -18,7 +18,7 @@ const Comercial = () => {
           colorTexto='11'
           icono='office-building'
           numero='20'
-          />
+        />
         <Card onPress={()=>{alert('Contactos')}} titulo='Contactos' color='5' colorTexto='11' icono='card-account-details-outline' numero='30'/>
         <Card onPress={()=>{alert('Reportes')}} titulo='Reportes' color='9' colorTexto='3' icono='chart-box-outline'/>
       </View>

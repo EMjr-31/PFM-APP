@@ -36,6 +36,7 @@ const styles= StyleSheet.create({
     },
     btn_texto:{
         textAlign:'center',
-        color:'#fff'
+        color:'#fff',
+        fontSize:18
     }
 })

@@ -10,6 +10,7 @@ import Inicio from "./Inicio";
 import Rrhh from "./Rrhh";
 import Comercial from "./Comercial";
 import Candidatos from "./Candidatos";
+import Clientes from "./Clientes";
 
 //Pantall Secundarias
 import Secundario from "./Secundario";
@@ -50,6 +51,10 @@ function ComercialStackPantallas(){
           />
            <ComercialStack.Screen
               name="Clientes"
+              component={Clientes}
+          />
+          <ComercialStack.Screen
+              name="Ingresar Clientes"
               component={FormularioClientes}
           />
       </ComercialStack.Navigator>
@@ -62,8 +67,7 @@ function Mistabs() {
     <Tab.Navigator
       initialRouteName="Inicio"
       screenOptions={{
-        tabBarActiveBackgroundColor: '#0052cc',
-        tabBarActiveTintColor: '#fff'
+        tabBarActiveTintColor: '#0052cc'
       }}
     >
       <Tab.Screen

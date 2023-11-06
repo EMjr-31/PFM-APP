@@ -166,10 +166,10 @@ const Formulario = () => {
           <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10, width: '80%' }}>
             <Text>{successMessage || errors.general}</Text>
             <Btn
-               onPress={toggleModal}
-                texto='Cerrar'
-                color="1"
-                colorTexto="11"
+              onPress={toggleModal}
+              texto='Cerrar'
+              color="1"
+              colorTexto="11"
             />
           </View>
         </View>
