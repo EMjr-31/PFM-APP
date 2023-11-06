@@ -1,39 +1,58 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView} from "react-native";
-import {Card} from "./Card";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { CardGrande } from "./CardGrande";
 import { useNavigation } from "@react-navigation/native";
 
-const Rrhh =()=>{
-    const navegar=useNavigation();
-    return(
-        <View style={styles.container}>
-        <View style={styles.cardContainer}>
-          <Card onPress={()=>{alert('Candidatos')}} titulo='Candidatos' color='5' colorTexto='11' icono='account-box-multiple-outline' numero='20'/>
-          <Card onPress={()=>{alert('Reportes')}} titulo='Reportes' color='8' colorTexto='3' icono='chart-box-outline'/>
-          <CardGrande 
-            onPress={()=>navegar.navigate("Secundario", {EjemploProps:"Seguimientos"})} 
-            titulo='Seguimientos' color='4' colorTexto='11' icono='badge-account-alert-outline' numero='12'
+const Rrhh = () => {
+  const navegar = useNavigation();
+
+  return (
+    <ScrollView style={styles.container}>
+      <View style={styles.cardContainer}>
+        <CardGrande
+          onPress={() => navegar.navigate("Secundario", { EjemploProps: "Seguimientos" })}
+          titulo='Seguimientos'
+          color='2'
+          colorTexto='11'
+          icono='badge-account-alert-outline'
+          numero='12'
         />
-        </View>
+        <CardGrande
+          onPress={() => alert('Candidatos')}
+          titulo='Candidatos'
+          color='4'
+          colorTexto='11'
+          icono='account-box-multiple-outline'
+          numero='20'
+        />
+        <CardGrande
+          onPress={() => alert('Reportes')}
+          titulo='Reportes'
+          color='6'
+          colorTexto='11'
+          icono='chart-box-outline'
+        />
       </View>
-        
-    )
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: "center", // Centrar verticalmente
-      backgroundColor:'#f3f6fc',
-    },
-    cardContainer: {
-      flex: 1,
-      flexDirection: "row",
-      flexWrap: "wrap", // Permite que las tarjetas se envuelvan en filas
-      justifyContent: "space-between", // Espaciado uniforme horizontalmente
-    },
-  });
-  
+  container: {
+    flex: 1,
+    backgroundColor: '#0052cc',
+  },
+  cardContainer: {
+    height:700,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginTop: 15,
+    paddingTop: 10,
+    backgroundColor: '#fff',
+    borderTopRightRadius: 25,
+    borderTopLeftRadius: 25,
+  },
+});
 
 export default Rrhh;

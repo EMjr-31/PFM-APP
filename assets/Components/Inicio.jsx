@@ -1,19 +1,44 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import moment from 'moment'; // Importa la biblioteca moment
+import { Btn  } from "./btn";
 
 const PerfilUsuario = () => {
+   // Obtiene la fecha actual y la formatea en el formato deseado
+   const currentDate = moment();
+   const formattedDate = currentDate.format("dddd DD [de] MMMM YYYY");
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image
-          source={require("../img/LogoPFCIniciales_.png")} // Reemplaza con la ruta de tu imagen de perfil
-          style={styles.profileImage}
-        />
+      <View style={styles.cont_redondo}>
+        <View style={styles.cont_fecha}>
+        <Text style={styles.date}>{formattedDate}</Text>
+        </View>
+        <View style={styles.imageContainer}>
+          <Image
+            source={require("../img/LogoPFCIniciales_.png")} // Reemplaza con la ruta de tu imagen de perfil
+            style={styles.profileImage}
+          />
+        </View>
+        <View style={styles.cont_usuario}>
+          <Text style={styles.name}>Nombre del Usuario</Text>
+          <Text style={styles.email}>correo@ejemplo.com</Text>
+        </View>
+        <View style={styles.cont_btn}>
+          <Btn
+            onPress={null}
+            texto='Cerra Sesion'
+            color="2"
+            colorTexto="11"
+          />
+          <View style={styles.buttonSpacing}></View>
+          <Btn
+            onPress={null}
+            texto='Cambiar contraseña'
+            color="6"
+            colorTexto="11"
+          />
+        </View>
       </View>
-      <Text style={styles.name}>Nombre del Usuario</Text>
-      <Text style={styles.email}>correo@ejemplo.com</Text>
-      <Text style={styles.role}>Rol del Usuario</Text>
-      <Text style={styles.date}>Fecha de Registro: 01/01/2023</Text>
     </View>
   );
 };
@@ -21,8 +46,19 @@ const PerfilUsuario = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: '100%',
+    backgroundColor: '#0052cc'
+  },
+  cont_redondo: {
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 15,
+    padding: 10,
+    height: '98%',
+    width: '100%',
+    backgroundColor: '#fff',
+    borderTopRightRadius: 25,
+    borderTopLeftRadius: 25
   },
   imageContainer: {
     width: 150, // Tamaño deseado para la imagen de perfil
@@ -36,6 +72,13 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
   },
+  cont_usuario:{
+    width:'100%',
+    justifyContent:'center',
+    alignItems:'center',
+    marginBottom:20,
+    
+  },
   name: {
     fontSize: 20,
     fontWeight: "bold",
@@ -45,9 +88,23 @@ const styles = StyleSheet.create({
   },
   role: {
     fontSize: 16,
+  },cont_fecha:{
+    width:'100%',
+    justifyContent:'center',
+    alignItems:'center',
+    marginBottom:20,
   },
   date: {
-    fontSize: 12,
+    fontSize: 20,
+  },
+  cont_btn:{
+    width:'85%',
+    justifyContent:'center',
+    alignItems:'center',
+    marginBottom:20,
+  },
+  buttonSpacing: {
+    height:5, // Separate the "Cancelar" button from the "Guardar" button
   },
 });
 

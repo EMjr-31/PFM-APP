@@ -37,7 +37,7 @@ export function CardGrande(props) {
 const styles = StyleSheet.create({
   cardContainer: {
     flexBasis: "97%",
-    height: 200,
+    height: 180,
     borderRadius: 35,
     padding: 16,
     marginHorizontal: 5,
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
     justifyContent: 'center',
+    marginLeft:20,
   },
   cardText: {
     fontSize: 25,

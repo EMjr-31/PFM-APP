@@ -28,6 +28,12 @@ function RrhhStackPantallas(){
     return(
         <RrhhStack.Navigator
             initialRouteName="Recursos Humanos"
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#0052cc", // Color de fondo de la barra de navegación
+              },
+              headerTintColor: "#fff", // Color del texto de la barra de navegación
+            }}
         >
             <RrhhStack.Screen
                 name="Recursos Humanos"
@@ -79,7 +85,10 @@ function Mistabs() {
       initialRouteName="Inicio"
       screenOptions={{
         tabBarActiveTintColor: '#0052cc',
-
+        headerStyle: {
+          backgroundColor: "#0052cc", // Color de fondo de la barra de navegación
+        },
+        headerTintColor: "#fff", // Color del texto de la barra de navegación
       }}
     >
       <Tab.Screen
@@ -90,17 +99,6 @@ function Mistabs() {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home-variant-outline" size={size} color={color} />
           ),
-        }}
-      ></Tab.Screen>
-      <Tab.Screen
-        name="RRHH"
-        component={RrhhStackPantallas}
-        options={{
-          tabBarLabel: "RRHH",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="folder-multiple-outline" size={size} color={color} />
-          ),
-          headerShown: false
         }}
       ></Tab.Screen>
       <Tab.Screen
@@ -115,15 +113,17 @@ function Mistabs() {
         }}
       ></Tab.Screen>
       <Tab.Screen
-        name="Candidatos"
-        component={Candidatos}
+        name="RRHH"
+        component={RrhhStackPantallas}
         options={{
-          tabBarLabel: "Candidatos",
+          tabBarLabel: "RRHH",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account-supervisor-outline" size={size} color={color} />
+            <MaterialCommunityIcons name="folder-multiple-outline" size={size} color={color} />
           ),
+          headerShown: false
         }}
       ></Tab.Screen>
+
     </Tab.Navigator>
   );
 }

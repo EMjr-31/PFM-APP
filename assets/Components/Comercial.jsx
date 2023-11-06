@@ -9,19 +9,21 @@ const Comercial = () => {
   const navegar=useNavigation();
   return (
     <View style={styles.container}>
-      <View style={styles.cardContainer}>
-        <CardGrande onPress={()=>{alert('Propuestas')}} titulo='Propuestas' color='2' colorTexto='11' icono='clipboard-flow-outline' numero='12'/>
-        <Card 
-          onPress={()=>navegar.navigate("Clientes")} 
-          titulo='Clientes' 
-          color='3'
-          colorTexto='11'
-          icono='office-building'
-          numero='20'
-        />
-        <Card onPress={()=>{alert('Contactos')}} titulo='Contactos' color='5' colorTexto='11' icono='card-account-details-outline' numero='30'/>
-        <Card onPress={()=>{alert('Reportes')}} titulo='Reportes' color='9' colorTexto='3' icono='chart-box-outline'/>
-      </View>
+      <ScrollView>
+        <View style={styles.cardContainer}>
+            <CardGrande onPress={()=>{alert('Propuestas')}} titulo='Propuestas' color='2' colorTexto='11' icono='clipboard-flow-outline' numero='12'/>
+            <CardGrande 
+              onPress={()=>navegar.navigate("Clientes")} 
+              titulo='Clientes' 
+              color='3'
+              colorTexto='11'
+              icono='office-building'
+              numero='20'
+            />
+            <CardGrande onPress={()=>{alert('Contactos')}} titulo='Contactos' color='5' colorTexto='11' icono='card-account-details-outline' numero='30'/>
+            <CardGrande onPress={()=>{alert('Reportes')}} titulo='Reportes' color='6' colorTexto='11' icono='chart-box-outline'/>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -30,13 +32,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center", // Centrar verticalmente
-    backgroundColor:'#f3f6fc',
+    backgroundColor:'#0052cc'
   },
   cardContainer: {
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap", // Permite que las tarjetas se envuelvan en filas
     justifyContent: "space-between", // Espaciado uniforme horizontalmente
+    marginTop:15,
+    paddingTop: 10,
+    backgroundColor:'#fff',
+    borderTopRightRadius:25,
+    borderTopLeftRadius:25
   },
 });
 

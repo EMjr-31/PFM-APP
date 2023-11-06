@@ -172,6 +172,7 @@ const EditarCliente = () => {
         ) : (
           <View style={styles.editButtons}>
             <Btn onPress={handleSave} texto='Guardar' color="2" colorTexto="10" />
+            <View style={styles.buttonSpacing}></View>
             <Btn onPress={handleCancel} texto='Cancelar' color="6" colorTexto="10" />
           </View>
         )}
@@ -196,6 +197,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     backgroundColor: '#0052cc'
+    
   },
   cont_redondo: {
     marginTop: 15,
