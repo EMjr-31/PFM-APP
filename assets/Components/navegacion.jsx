@@ -15,11 +15,15 @@ import Secundario from "./Secundario";
 import FormularioClientes from "./FormularioClientes";
 import Clientes from "./Clientes";
 import EditarCliente from "./EditarCliente";
+import Seguimientos from "./Seguimientos";
+
 
 //Pantall Comercial 
 import FormularioCandidatos from './FormularioCandidatos';
 import Candidatos from "./Candidatos";
 import EditarCandidatos from "./EditarCandidatos";
+import Contactos from "./Contactos";
+import Propuestas from "./Propuestas";
 
 
 // Variable de TabNavigator
@@ -56,6 +60,10 @@ function RrhhStackPantallas(){
                 name="Editar Candidato"
                 component={EditarCandidatos}
             />
+            <RrhhStack.Screen
+                name="Seguimientos"
+                component={Seguimientos}
+            />
         </RrhhStack.Navigator>
     )
 }
@@ -86,6 +94,14 @@ function ComercialStackPantallas(){
           <ComercialStack.Screen
               name="Editar Cliente"
               component={EditarCliente}
+          />
+          <ComercialStack.Screen
+              name="Propuestas"
+              component={Propuestas}
+          />
+          <ComercialStack.Screen
+              name="Contactos"
+              component={Contactos}
           />
       </ComercialStack.Navigator>
   )

@@ -8,30 +8,29 @@ import { coloresTextos } from "./ColoresTextos";
 import { colores } from "./Colores";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-
-const Candidatos = () => {
-    const navegar = useNavigation();
-    const [candidatos, setCandidatos] = useState([]);
+const Seguimientos = () => {
+  const navegar = useNavigation();
+  const [plazasTrabajo, setPlazasTrabajo] = useState([]);
   const [filtroNombre, setFiltroNombre] = useState("");
 
   useEffect(() => {
-    // Realiza una solicitud a la API para obtener los datos
-    fetch("http://147.182.249.91/api/candidatos")
+    // Realiza una solicitud a la API para obtener los datos de plazas de trabajo
+    fetch("http://147.182.249.91/api/plazas-trabajo")
       .then(response => response.json())
       .then(data => {
-        // Mapea los datos para mostrar solo el nombre del candidato
-        const mappedCandidatos = data.map(candidato => ({
-          id: candidato.id,
-          nombre: candidato.nombre_candidato,
-          residencia:candidato.residencia
+        // Mapea los datos para mostrar el nombre de la plaza y el estado
+        const mappedPlazasTrabajo = data.map(plaza => ({
+          id: plaza.id,
+          nombre: plaza.nombre_plaza,
+          estado: plaza.estatus,
         }));
-        setCandidatos(mappedCandidatos);
+        setPlazasTrabajo(mappedPlazasTrabajo);
       })
       .catch(error => console.error(error));
   }, []);
-  
-  const filteredCandidatos = candidatos.filter(candidato => {
-    return candidato.nombre.toLowerCase().includes(filtroNombre.toLowerCase());
+
+  const filteredPlazasTrabajo = plazasTrabajo.filter(plaza => {
+    return plaza.nombre.toLowerCase().includes(filtroNombre.toLowerCase());
   });
 
   return (
@@ -43,7 +42,7 @@ const Candidatos = () => {
               ...styles.input,
               color: coloresTextos[4]
             }}
-            placeholder="Buscar por nombre de candidato"
+            placeholder="Buscar por nombre de plaza"
             value={filtroNombre}
             onChangeText={(text) => setFiltroNombre(text)}
           />
@@ -54,16 +53,16 @@ const Candidatos = () => {
           />
         </View>
         <ScrollView>
-          {filteredCandidatos.map((candidato, index) => (
+          {filteredPlazasTrabajo.map((plaza, index) => (
             <CardRegistro
               key={index}
-              onPress={() => navegar.navigate("Editar Candidato", { id: candidato.id })}
-              titulo={candidato.nombre}
+              onPress={() => navegar.navigate("Detalles Plaza Trabajo", { id: plaza.id })}
+              titulo={plaza.nombre}
               color="11"
               colorTexto="4"
-              icono="account-box-outline" 
-              // Puedes mostrar más información del candidato aquí
-              subtitulo={`Residencia: ${candidato.residencia}`}
+              icono="briefcase-outline"
+              // Muestra el estado de la plaza de trabajo
+              subtitulo={`Estado: ${plaza.estado}`}
             />
           ))}
         </ScrollView>
@@ -76,11 +75,10 @@ const Candidatos = () => {
           icon="plus"
           color="white"
           onPress={() => {
-            navegar.navigate("Ingresar Candidato");
+            navegar.navigate("Nueva Plaza Trabajo");
           }}
         />
       </View>
-      
     </View>
   );
 };
@@ -125,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Candidatos;
+export default Seguimientos;

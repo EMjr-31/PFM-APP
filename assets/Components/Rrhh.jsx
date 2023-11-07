@@ -10,7 +10,7 @@ const Rrhh = () => {
     <ScrollView style={styles.container}>
       <View style={styles.cardContainer}>
         <CardGrande
-          onPress={() => navegar.navigate("Secundario", { EjemploProps: "Seguimientos" })}
+          onPress={() => navegar.navigate("Seguimientos")}
           titulo='Seguimientos'
           color='2'
           colorTexto='11'

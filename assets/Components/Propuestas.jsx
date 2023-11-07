@@ -8,30 +8,23 @@ import { coloresTextos } from "./ColoresTextos";
 import { colores } from "./Colores";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-
-const Candidatos = () => {
-    const navegar = useNavigation();
-    const [candidatos, setCandidatos] = useState([]);
-  const [filtroNombre, setFiltroNombre] = useState("");
+const Propuestas = () => {
+  const navegar = useNavigation();
+  const [propuestas, setPropuestas] = useState([]);
+  const [filtroTipoPropuesta, setFiltroTipoPropuesta] = useState("");
 
   useEffect(() => {
-    // Realiza una solicitud a la API para obtener los datos
-    fetch("http://147.182.249.91/api/candidatos")
+    // Realiza una solicitud a la API para obtener los datos de propuestas
+    fetch("http://147.182.249.91/api/propuestas")
       .then(response => response.json())
       .then(data => {
-        // Mapea los datos para mostrar solo el nombre del candidato
-        const mappedCandidatos = data.map(candidato => ({
-          id: candidato.id,
-          nombre: candidato.nombre_candidato,
-          residencia:candidato.residencia
-        }));
-        setCandidatos(mappedCandidatos);
+        setPropuestas(data);
       })
       .catch(error => console.error(error));
   }, []);
-  
-  const filteredCandidatos = candidatos.filter(candidato => {
-    return candidato.nombre.toLowerCase().includes(filtroNombre.toLowerCase());
+
+  const filteredPropuestas = propuestas.filter(propuesta => {
+    return propuesta.TipoPropuestaEnviada.toLowerCase().includes(filtroTipoPropuesta.toLowerCase());
   });
 
   return (
@@ -43,9 +36,9 @@ const Candidatos = () => {
               ...styles.input,
               color: coloresTextos[4]
             }}
-            placeholder="Buscar por nombre de candidato"
-            value={filtroNombre}
-            onChangeText={(text) => setFiltroNombre(text)}
+            placeholder="Buscar por tipo de propuesta"
+            value={filtroTipoPropuesta}
+            onChangeText={(text) => setFiltroTipoPropuesta(text)}
           />
           <MaterialCommunityIcons
             name="magnify"
@@ -54,16 +47,15 @@ const Candidatos = () => {
           />
         </View>
         <ScrollView>
-          {filteredCandidatos.map((candidato, index) => (
+          {filteredPropuestas.map((propuesta, index) => (
             <CardRegistro
               key={index}
-              onPress={() => navegar.navigate("Editar Candidato", { id: candidato.id })}
-              titulo={candidato.nombre}
+              titulo={`${propuesta.TipoPropuestaEnviada}`}
               color="11"
               colorTexto="4"
-              icono="account-box-outline" 
-              // Puedes mostrar más información del candidato aquí
-              subtitulo={`Residencia: ${candidato.residencia}`}
+              icono="clipboard-edit-outline"
+              // Puedes mostrar más información de la propuesta aquí
+              subtitulo={`${propuesta.cliente.nombre_empresa}`}
             />
           ))}
         </ScrollView>
@@ -76,11 +68,10 @@ const Candidatos = () => {
           icon="plus"
           color="white"
           onPress={() => {
-            navegar.navigate("Ingresar Candidato");
+            navegar.navigate("Ingresar Propuesta");
           }}
         />
       </View>
-      
     </View>
   );
 };
@@ -89,40 +80,40 @@ const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
     width: '100%',
-    backgroundColor:'#0052cc'
+    backgroundColor: '#0052cc'
   },
-  cont_redondo:{
-    marginTop:15,
+  cont_redondo: {
+    marginTop: 15,
     padding: 10,
-    height:'98%',
-    backgroundColor:'#fff',
-    borderTopRightRadius:25,
-    borderTopLeftRadius:25
+    height: '98%',
+    backgroundColor: '#fff',
+    borderTopRightRadius: 25,
+    borderTopLeftRadius: 25
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    height:60,
+    height: 60,
     borderWidth: 0,
     borderColor: coloresTextos[4],
     borderRadius: 30,
     padding: 10,
     marginBottom: 10,
-    backgroundColor:'#fff'
+    backgroundColor: '#fff'
   },
   input: {
     flex: 1,
     color: coloresTextos[4],
     marginLeft: 10,
-    fontSize:16
+    fontSize: 16
   },
   fab: {
     position: 'absolute',
     margin: 16,
     right: 0,
     bottom: 0,
-    color:"white",
+    color: "white",
   },
 });
 
-export default Candidatos;
+export default Propuestas;

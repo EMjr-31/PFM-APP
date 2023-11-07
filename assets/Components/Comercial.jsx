@@ -11,7 +11,14 @@ const Comercial = () => {
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.cardContainer}>
-            <CardGrande onPress={()=>{alert('Propuestas')}} titulo='Propuestas' color='2' colorTexto='11' icono='clipboard-flow-outline' numero='12'/>
+            <CardGrande 
+              onPress={()=>navegar.navigate("Propuestas")} 
+              titulo='Propuestas' 
+              color='2' 
+              colorTexto='11' 
+              icono='clipboard-flow-outline' 
+              numero='12'
+            />
             <CardGrande 
               onPress={()=>navegar.navigate("Clientes")} 
               titulo='Clientes' 
@@ -20,7 +27,14 @@ const Comercial = () => {
               icono='office-building'
               numero='20'
             />
-            <CardGrande onPress={()=>{alert('Contactos')}} titulo='Contactos' color='5' colorTexto='11' icono='card-account-details-outline' numero='30'/>
+            <CardGrande 
+              onPress={()=>navegar.navigate("Contactos")} 
+              titulo='Contactos' 
+              color='5' 
+              colorTexto='11' 
+              icono='card-account-details-outline' 
+              numero='30'
+            />
             <CardGrande onPress={()=>{alert('Reportes')}} titulo='Reportes' color='6' colorTexto='11' icono='chart-box-outline'/>
         </View>
       </ScrollView>
