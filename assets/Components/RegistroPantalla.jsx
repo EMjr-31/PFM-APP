@@ -51,7 +51,7 @@ const RegistroPantalla = () => {
         value={verifyPassword}
         onChangeText={(text) => setVerifyPassword(text)}
       />
-      <Btn onPress={handleRegistration} texto='REGISTRARSE' color='#0052cc' />
+      <Btn onPress={handleRegistration} texto='REGISTRARSE' color='3' colorTexto='10'/>
       <View style={styles.cont_opcs}>
         <Text style={styles.cont_opcs_op}>Login</Text>
         <Text style={styles.cont_opcs_op}>  |  </Text>

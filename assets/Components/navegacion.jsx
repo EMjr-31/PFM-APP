@@ -24,6 +24,8 @@ import Candidatos from "./Candidatos";
 import EditarCandidatos from "./EditarCandidatos";
 import Contactos from "./Contactos";
 import Propuestas from "./Propuestas";
+import EditarPropuestas from "./EditarPropuestas"
+import ReporteComercial from "./ReporteComercial";
 
 
 // Variable de TabNavigator
@@ -102,6 +104,14 @@ function ComercialStackPantallas(){
           <ComercialStack.Screen
               name="Contactos"
               component={Contactos}
+          />
+          <ComercialStack.Screen
+              name="Editar Propuestas"
+              component={EditarPropuestas}
+          />
+          <ComercialStack.Screen
+              name="Reporte Comercial"
+              component={ReporteComercial}
           />
       </ComercialStack.Navigator>
   )

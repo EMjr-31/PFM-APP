@@ -50,6 +50,7 @@ const Propuestas = () => {
           {filteredPropuestas.map((propuesta, index) => (
             <CardRegistro
               key={index}
+              onPress={()=>navegar.navigate("Editar Propuestas", {id:propuesta.id})}
               titulo={`${propuesta.TipoPropuestaEnviada}`}
               color="11"
               colorTexto="4"
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     padding: 10,
     height: '98%',
-    backgroundColor: '#fff',
+    backgroundColor: '#f3f6fc',
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25
   },

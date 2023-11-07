@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     padding: 10,
     height: '98%',
-    backgroundColor: '#fff',
+    backgroundColor: '#f3f6fc',
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25
   },

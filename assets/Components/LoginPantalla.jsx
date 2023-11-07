@@ -36,7 +36,7 @@ const LoginPantalla = () => {
             value={password}
             onChangeText={(text) => setPassword(text)}
         />
-        <Btn onPress={handleLogin} texto='INGRESAR' color='#0052cc'/>
+        <Btn onPress={handleLogin} texto='INGRESAR' color='2' colorTexto='10'/>
         <View style={styles.cont_opcs}>
             <Text style={styles.cont_opcs_op}>Registrarse</Text>
             <Text style={styles.cont_opcs_op}>  |  </Text>

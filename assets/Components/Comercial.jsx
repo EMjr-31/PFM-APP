@@ -35,7 +35,13 @@ const Comercial = () => {
               icono='card-account-details-outline' 
               numero='30'
             />
-            <CardGrande onPress={()=>{alert('Reportes')}} titulo='Reportes' color='6' colorTexto='11' icono='chart-box-outline'/>
+            <CardGrande 
+              onPress={()=>navegar.navigate("Reporte Comercial")} 
+              titulo='Reportes'
+              color='6' 
+              colorTexto='11' 
+              icono='chart-box-outline'
+            />
         </View>
       </ScrollView>
     </View>
@@ -55,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between", // Espaciado uniforme horizontalmente
     marginTop:15,
     paddingTop: 10,
-    backgroundColor:'#fff',
+    backgroundColor:'#f3f6fc',
     borderTopRightRadius:25,
     borderTopLeftRadius:25
   },
