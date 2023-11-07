@@ -11,11 +11,15 @@ import Rrhh from "./Rrhh";
 import Comercial from "./Comercial";
 import Candidatos from "./Candidatos";
 
-//Pantall Secundarias
+//Pantall RRHH
 import Secundario from "./Secundario";
 import FormularioClientes from "./FormularioClientes";
 import Clientes from "./Clientes";
 import EditarCliente from "./EditarCliente";
+
+//Pantall Comercial 
+import FormularioCandidatos from './FormularioCandidatos';
+
 
 // Variable de TabNavigator
 const Tab = createBottomTabNavigator();
@@ -42,6 +46,10 @@ function RrhhStackPantallas(){
              <RrhhStack.Screen
                 name="Secundario"
                 component={Secundario}
+            />
+            <RrhhStack.Screen
+                name="Ingresar Candidatos"
+                component={FormularioCandidatos}
             />
         </RrhhStack.Navigator>
     )

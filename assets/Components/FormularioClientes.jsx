@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {Btn} from './btn';
 import Modal from 'react-native-modal'; // Importa Modal desde "react-native-modal"
+import moment from 'moment'; // Importa moment
 
 const Formulario = () => {
   const [formData, setFormData] = useState({
@@ -43,6 +44,8 @@ const Formulario = () => {
     }
 
     if (Object.keys(validationErrors).length === 0) {
+      // Formatea la fecha antes de enviarla
+      formData.fecha_nacimiento = moment(formData.fecha_nacimiento).format('YYYY-MM-DD');
       // Realiza la solicitud POST a la API
       try {
         const response = await fetch('http://147.182.249.91/api/clientes', {
@@ -50,14 +53,7 @@ const Formulario = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            nombre_empresa: formData.nombre_empresa,
-            rubro: formData.rubro,
-            nombre_contacto: formData.nombre_contacto,
-            telefono: formData.telefono,
-            correo_electronico: formData.correo_electronico,
-            ubicacion: formData.ubicacion,
-          }),
+          body: JSON.stringify(formData),
         });
 
         if (response.status === 201) {
@@ -160,6 +156,7 @@ const Formulario = () => {
         color="1"
         colorTexto="11"
       />
+       {errors.general ? <Text style={{ color: 'red' }}>{errors.general}</Text> : null}
   
       <Modal isVisible={isModalVisible}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

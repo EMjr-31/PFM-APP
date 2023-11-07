@@ -18,7 +18,7 @@ const Rrhh = () => {
           numero='12'
         />
         <CardGrande
-          onPress={() => alert('Candidatos')}
+          onPress={() => navegar.navigate("Ingresar Candidatos")}
           titulo='Candidatos'
           color='4'
           colorTexto='11'
