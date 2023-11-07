@@ -9,7 +9,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Inicio from "./Inicio";
 import Rrhh from "./Rrhh";
 import Comercial from "./Comercial";
-import Candidatos from "./Candidatos";
 
 //Pantall RRHH
 import Secundario from "./Secundario";
@@ -19,6 +18,8 @@ import EditarCliente from "./EditarCliente";
 
 //Pantall Comercial 
 import FormularioCandidatos from './FormularioCandidatos';
+import Candidatos from "./Candidatos";
+import EditarCandidatos from "./EditarCandidatos";
 
 
 // Variable de TabNavigator
@@ -44,12 +45,16 @@ function RrhhStackPantallas(){
                 component={Rrhh}
             />
              <RrhhStack.Screen
-                name="Secundario"
-                component={Secundario}
+                name="Candidatos"
+                component={Candidatos}
             />
             <RrhhStack.Screen
-                name="Ingresar Candidatos"
+                name="Ingresar Candidato"
                 component={FormularioCandidatos}
+            />
+            <RrhhStack.Screen
+                name="Editar Candidato"
+                component={EditarCandidatos}
             />
         </RrhhStack.Navigator>
     )
