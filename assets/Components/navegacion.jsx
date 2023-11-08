@@ -5,7 +5,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
-///Login y Registro 
+///Inicio y sesiones
+import SplashScreen from "./Splash";
 import LoginPantalla from "./LoginPantalla";
 import RegistroPantalla from "./RegistroPantalla";
 
@@ -47,11 +48,15 @@ const ComercialStack= createNativeStackNavigator();
 function InicioStackPantallas(){
   return(
       <InicioStack.Navigator
-          initialRouteName="Login"
+          initialRouteName="Carga"
           screenOptions={{
             headerShown: false, // Oculta el encabezado
           }}
       >
+         <InicioStack.Screen
+              name="Carga"
+              component={SplashScreen}
+          />
           <InicioStack.Screen
               name="Login"
               component={LoginPantalla}

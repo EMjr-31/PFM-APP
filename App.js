@@ -4,7 +4,9 @@ import LoginPantalla from './assets/Components/LoginPantalla';
 import RegistroPantalla from './assets/Components/RegistroPantalla';
 import Navegacion from './assets/Components/navegacion';
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+
+import SplashScreen from './assets/Components/Splash';
 export default function App() {
 
   
