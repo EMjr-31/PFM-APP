@@ -19,7 +19,7 @@ Trello: https://trello.com/invite/dpsproject5/ATTI80a3c8216dc59c57bcc92d4c3cddf0
 
 Manual tecnico: https://drive.google.com/file/d/1o23VesTrzd__HC-Nure-WdHAW9dXF5jK/view?usp=sharing
 
-Manual de Usuario: https://drive.google.com/file/d/1Ng_aA8vJGdIXSHj4LaF0BwqvCIkBqaiA/view?usp=sharing
+Manual de Usuario: https://drive.google.com/file/d/1OOWsWGuMuVp5hObDOF0PufiMxwCFzLwi/view?usp=sharing
 
 Video: https://drive.google.com/file/d/1ll08EgTzHF9LBuSw2oXDtHNQzuazAI_k/view?usp=sharing
 
