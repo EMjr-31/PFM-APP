@@ -16,6 +16,8 @@ import FormularioClientes from "./FormularioClientes";
 import Clientes from "./Clientes";
 import EditarCliente from "./EditarCliente";
 import Seguimientos from "./Seguimientos";
+import EditarSeguimientos from "./EditarSeguimientos";
+import ReporteRRHH from "./ReporteRRHH";
 
 
 
@@ -67,6 +69,14 @@ function RrhhStackPantallas(){
             <RrhhStack.Screen
                 name="Seguimientos"
                 component={Seguimientos}
+            />
+            <RrhhStack.Screen
+                name="Editar Seguimientos"
+                component={EditarSeguimientos}
+            />
+             <RrhhStack.Screen
+                name="Reporte RRHH"
+                component={ReporteRRHH}
             />
         </RrhhStack.Navigator>
     )

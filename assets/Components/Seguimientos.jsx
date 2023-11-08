@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ScrollView, TextInput } from "react-native";
-import { Btn } from './btn';
 import { useNavigation } from "@react-navigation/native";
 import { CardRegistro } from "./CardRegistro";
-import { FAB } from 'react-native-paper'; // Importa FAB de react-native-paper
 import { coloresTextos } from "./ColoresTextos";
 import { colores } from "./Colores";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -56,7 +54,7 @@ const Seguimientos = () => {
           {filteredPlazasTrabajo.map((plaza, index) => (
             <CardRegistro
               key={index}
-              onPress={() => navegar.navigate("Detalles Plaza Trabajo", { id: plaza.id })}
+              onPress={() => navegar.navigate("Editar Seguimientos", { id: plaza.id })}
               titulo={plaza.nombre}
               color="11"
               colorTexto="4"
@@ -66,18 +64,6 @@ const Seguimientos = () => {
             />
           ))}
         </ScrollView>
-        <FAB
-          style={{
-            ...styles.fab,
-            backgroundColor: '#0052cc',
-          }}
-          small
-          icon="plus"
-          color="white"
-          onPress={() => {
-            navegar.navigate("Nueva Plaza Trabajo");
-          }}
-        />
       </View>
     </View>
   );
