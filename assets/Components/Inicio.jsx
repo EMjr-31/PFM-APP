@@ -2,8 +2,13 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import moment from 'moment'; // Importa la biblioteca moment
 import { Btn  } from "./btn";
+import { useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 
 const PerfilUsuario = () => {
+  const route = useRoute();
+  //const { correo } = route.params;
+  const navegar = useNavigation();
    // Obtiene la fecha actual y la formatea en el formato deseado
    const currentDate = moment();
    const formattedDate = currentDate.format("dddd DD [de] MMMM YYYY");
@@ -20,23 +25,18 @@ const PerfilUsuario = () => {
           />
         </View>
         <View style={styles.cont_usuario}>
-          <Text style={styles.name}>Nombre del Usuario</Text>
-          <Text style={styles.email}>correo@ejemplo.com</Text>
+          <Text style={styles.email}>Usuario PFC</Text>
         </View>
         <View style={styles.cont_btn}>
           <Btn
-            onPress={null}
+            onPress={()=>{
+              navegar.navigate("Login");
+            }}
             texto='Cerra Sesion'
             color="2"
             colorTexto="11"
           />
           <View style={styles.buttonSpacing}></View>
-          <Btn
-            onPress={null}
-            texto='Cambiar contraseña'
-            color="6"
-            colorTexto="11"
-          />
         </View>
       </View>
     </View>

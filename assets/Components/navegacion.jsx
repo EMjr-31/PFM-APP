@@ -5,6 +5,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
+///Login y Registro 
+import LoginPantalla from "./LoginPantalla";
+import RegistroPantalla from "./RegistroPantalla";
+
 // Pantallas de inicio 
 import Inicio from "./Inicio";
 import Rrhh from "./Rrhh";
@@ -35,9 +39,35 @@ import ReporteComercial from "./ReporteComercial";
 // Variable de TabNavigator
 const Tab = createBottomTabNavigator();
 
-///
+//// Stack Navihgation
+const InicioStack= createNativeStackNavigator();
 const RrhhStack= createNativeStackNavigator();
 const ComercialStack= createNativeStackNavigator();
+
+function InicioStackPantallas(){
+  return(
+      <InicioStack.Navigator
+          initialRouteName="Login"
+          screenOptions={{
+            headerShown: false, // Oculta el encabezado
+          }}
+      >
+          <InicioStack.Screen
+              name="Login"
+              component={LoginPantalla}
+          />
+          <InicioStack.Screen
+              name="Registro"
+              component={RegistroPantalla}
+          />
+          <InicioStack.Screen
+              name="Menu"
+              component={Mistabs}
+          />
+      </InicioStack.Navigator>
+  )
+}
+
 
 function RrhhStackPantallas(){
     return(
@@ -81,6 +111,7 @@ function RrhhStackPantallas(){
         </RrhhStack.Navigator>
     )
 }
+
 
 function ComercialStackPantallas(){
   return(
@@ -183,10 +214,11 @@ function Mistabs() {
   );
 }
 
+
 export default function Navegacion(){
     return(
         <NavigationContainer>
-            <Mistabs></Mistabs>
+          <InicioStackPantallas/>
         </NavigationContainer>
     )
 }

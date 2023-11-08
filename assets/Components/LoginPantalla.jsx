@@ -1,15 +1,35 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image, ScrollView ,SafeAreaView} from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, ScrollView ,TouchableHighlight} from 'react-native';
 import { Btn } from './btn';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database'; // o cualquier otro módulo que necesites
+import { firebaseConfig } from './firebaseConfig';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigation } from "@react-navigation/native";
 
 const LoginPantalla = () => {
+  const navegar = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
-  const handleLogin = () => {
-   alert('btn')
-  };
+  const app=firebase.initializeApp(firebaseConfig)
+  const auth = getAuth(app)
 
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth,email,password)
+      .then(
+        (userCredential)=>{
+          console.log('Incio Sesion')
+          const user= userCredential.user;
+          console.log(user.email)
+          alert("Bienvenido");
+          navegar.navigate("Menu", { correo:user.email });
+        })
+      .catch(error=>{
+        alert(error)
+        console.log(error)
+      })
+  };
   return (
     <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.cont_logo}>
@@ -38,7 +58,11 @@ const LoginPantalla = () => {
         />
         <Btn onPress={handleLogin} texto='INGRESAR' color='2' colorTexto='10'/>
         <View style={styles.cont_opcs}>
-            <Text style={styles.cont_opcs_op}>Registrarse</Text>
+            <TouchableHighlight
+              onPress={()=>{
+                navegar.navigate("Registro");
+              }}
+            ><Text style={styles.cont_opcs_op}>Registrarse</Text></TouchableHighlight>
             <Text style={styles.cont_opcs_op}>  |  </Text>
             <Text style={styles.cont_opcs_op}>Ayuda</Text>
         </View>

@@ -1,16 +1,41 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image, ScrollView ,SafeAreaView} from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, ScrollView ,TouchableHighlight} from 'react-native';
 import { Btn } from './btn';
+///Firebase
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database'; // o cualquier otro módulo que necesites
+import { firebaseConfig } from './firebaseConfig';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { useNavigation } from "@react-navigation/native";
 
 const RegistroPantalla = () => {
+  const navegar = useNavigation();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
 
+  const app=firebase.initializeApp(firebaseConfig)
+  const auth = getAuth(app)
+
   const handleRegistration = () => {
-    // Aquí puedes agregar la lógica de registro, como validar los datos y enviarlos a un servidor.
-    alert('Registro exitoso');
+    if(password===verifyPassword){
+      createUserWithEmailAndPassword(auth,email,password)
+      .then(
+        (userCredential)=>{
+          console.log('Cuenta creada')
+          const user= userCredential.user;
+          console.log(user)
+          alert("Usuario Registrado. Regresa al Login");
+        })
+      .catch(error=>{
+        alert(error)
+        console.log(error)
+      })
+      }else{
+      alert('La contraseña no coincide')
+    }
   };
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -31,12 +56,7 @@ const RegistroPantalla = () => {
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Nombre de usuario"
-        value={username}
-        onChangeText={(text) => setUsername(text)}
-      />
+
       <TextInput
         style={styles.input}
         placeholder="Contraseña"
@@ -53,7 +73,11 @@ const RegistroPantalla = () => {
       />
       <Btn onPress={handleRegistration} texto='REGISTRARSE' color='3' colorTexto='10'/>
       <View style={styles.cont_opcs}>
-        <Text style={styles.cont_opcs_op}>Login</Text>
+      <TouchableHighlight
+              onPress={()=>{
+                navegar.navigate("Login");
+              }}
+            ><Text style={styles.cont_opcs_op}>Login</Text></TouchableHighlight>
         <Text style={styles.cont_opcs_op}>  |  </Text>
         <Text style={styles.cont_opcs_op}>Ayuda</Text>
       </View>
