@@ -18,12 +18,14 @@ import EditarCliente from "./EditarCliente";
 import Seguimientos from "./Seguimientos";
 
 
+
 //Pantall Comercial 
 import FormularioCandidatos from './FormularioCandidatos';
 import Candidatos from "./Candidatos";
 import EditarCandidatos from "./EditarCandidatos";
 import Contactos from "./Contactos";
 import Propuestas from "./Propuestas";
+import FormularioPropuesta from "./FormularioPropuesta";
 import EditarPropuestas from "./EditarPropuestas"
 import ReporteComercial from "./ReporteComercial";
 
@@ -112,6 +114,10 @@ function ComercialStackPantallas(){
           <ComercialStack.Screen
               name="Reporte Comercial"
               component={ReporteComercial}
+          />
+          <ComercialStack.Screen
+              name="Ingresar Propuesta"
+              component={FormularioPropuesta}
           />
       </ComercialStack.Navigator>
   )
