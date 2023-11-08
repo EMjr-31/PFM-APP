@@ -4,6 +4,7 @@ import { useRoute } from "@react-navigation/native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ModalDropdown from 'react-native-modal-dropdown';
 import Modal from 'react-native-modal'; // Importa Modal desde "react-native-modal"
+import moment from 'moment'; // Importa moment
 
 
 import { Btn } from './btn';
@@ -23,6 +24,7 @@ const EditarPropuestas = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+  
 
   useEffect(() => {
     // Realiza una solicitud a la API para obtener los detalles de la propuesta
@@ -87,6 +89,51 @@ const EditarPropuestas = () => {
           setModalVisible(true);
         })
         .catch((error) => console.error(error));
+    }
+  };
+  const handleEnviarRRHH = () => {
+    if (propuesta.EstadoPropuesta==='Ganada'){
+      const fechaActual = new Date();
+      
+      // Calcula el salario según la fórmula
+    const salario = propuesta.MontoPropuesta * (1 - propuesta.Descuento / 100);
+  
+    // Crea un objeto con los datos a enviar
+    const data = {
+      nombre_plaza: propuesta.TipoPropuestaEnviada,
+      propuesta_id: propuesta.id,
+      usuario_recurso_humanos_id: 2, // Asegúrate de establecer el ID correcto de RRHH
+      salario: salario,
+      cantidad_solicitada: 1, // Puedes ajustar la cantidad solicitada según tus necesidades
+      fecha_recepcion_validacion_perfil: moment(fechaActual).format('YYYY-MM-DD'),
+      fecha_modificacion_perfil: moment(fechaActual).format('YYYY-MM-DD'),
+      fecha_publicacion_perfil: moment(fechaActual).format('YYYY-MM-DD'),
+      estatus: 'Otro', // Define el estatus adecuado
+    };
+    console.log(data)
+    // Realiza la solicitud POST a la API
+    fetch('http://147.182.249.91/api/plazas-trabajo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        // Maneja la respuesta de la API, puedes mostrar una alerta o realizar otras acciones según sea necesario
+        if (response) {
+          alert('Solicitud enviada a RRHH con éxito');
+        } else {
+          alert('Error al enviar la solicitud a RRHH');
+        }
+      })
+      .catch((error) => {
+        console.error('Error de solicitud:', error);
+        alert('Error al enviar la solicitud a RRHH');
+      });
+    }else{
+      alert("Propuesta no lista")
     }
   };
 
@@ -221,7 +268,13 @@ const EditarPropuestas = () => {
         {!isEditable ? (
           <View style={styles.editButtons}>
             <Btn onPress={handleEdit} texto='Editar' color="2" colorTexto="10" />
+            <View style={styles.buttonSpacing}></View>
+            <Btn 
+              onPress={handleEnviarRRHH
+              } 
+              texto='Enviar a RRHH' color="5" colorTexto="10" />
           </View>
+          
         ) : (
           <View style={styles.editButtons}>
             <Btn onPress={handleSave} texto='Guardar' color="2" colorTexto="10" />
